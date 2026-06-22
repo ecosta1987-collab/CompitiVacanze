@@ -75,15 +75,63 @@ function allItems(){return Object.entries(BOOKS).flatMap(([id,b])=>b.pages.map(p
 function isDone(id,p){return (state.done[id]||[]).includes(p)}
 function setDone(id,p,val){state.done[id]=state.done[id]||[];if(val&&!isDone(id,p))state.done[id].push(p);if(!val)state.done[id]=state.done[id].filter(x=>x!==p);state.done[id].sort((a,b)=>a-b)}
 function dateKey(d){return d.toISOString().slice(0,10)}
-function defaultOffDays(){let a=[];function add(s,e){let d=new Date(s),end=new Date(e);while(d<=end){a.push(dateKey(d));d.setDate(d.getDate()+1)}};add('2025-06-08','2025-06-14');add('2025-06-28','2025-06-29');add('2025-07-05','2025-07-06');add('2025-07-12','2025-07-13');add('2025-08-04','2025-08-05');add('2025-08-10','2025-08-10');add('2025-08-17','2025-08-17');add('2025-08-25','2025-08-31');return a}
-function workDaysLeft(){let start=new Date('2025-06-01'),end=new Date('2025-08-31'),now=start,days=[];while(now<=end){let k=dateKey(now),dow=now.getDay();if(dow!==0&&!state.offDays.includes(k))days.push(k);now.setDate(now.getDate()+1)}return days;}
+function appYear(){return new Date().getFullYear();}
+function todayDateOnly(){const t = new Date();return new Date(t.getFullYear(), t.getMonth(), t.getDate());}
+function makeDate(monthIndex, day){return new Date(appYear(), monthIndex, day);}
+function defaultOffDays(){
+  let a = [];
+  const y = appYear();
+
+  function add(monthIndex, startDay, endDay){
+    let d = new Date(y, monthIndex, startDay);
+    let end = new Date(y, monthIndex, endDay);
+
+    while(d <= end){
+      a.push(dateKey(d));
+      d.setDate(d.getDate() + 1);
+    }
+  }
+
+  add(5, 8, 14);    // giugno
+  add(5, 28, 29);   // giugno
+  add(6, 5, 6);     // luglio
+  add(6, 12, 13);   // luglio
+  add(7, 4, 5);     // agosto
+  add(7, 10, 10);   // agosto
+  add(7, 17, 17);   // agosto
+  add(7, 25, 31);   // agosto
+
+  return a;
+}
+function workDaysLeft(){
+  const y = appYear();
+
+  const today = todayDateOnly();
+  const calendarStart = new Date(y, 5, 1); // 1 giugno
+  const calendarEnd = new Date(y, 7, 31);  // 31 agosto
+
+  let now = today < calendarStart ? calendarStart : today;
+  let days = [];
+
+  while(now <= calendarEnd){
+    const k = dateKey(now);
+
+    if(!state.offDays.includes(k)){
+      days.push(k);
+    }
+
+    now.setDate(now.getDate() + 1);
+  }
+
+  return days;
+}
 function pagesPerDay(){const left=allItems().filter(x=>!isDone(x.book,x.page)).length;const days=workDaysLeft().filter(k=>!state.logs[k]?.pages?.length).length||1;return Math.max(1,Math.ceil(left/days));}
 function levelInfo(){const total=allItems().length,done=allItems().filter(x=>isDone(x.book,x.page)).length,size=Math.max(1,Math.ceil(total/10));let level=Math.min(10,Math.floor(done/size)+1);if(done>=total)level=10;const start=(level-1)*size,doneInLevel=done>=total?Math.min(size,total-start):Math.max(0,done-start),levelTotal=Math.min(size,total-start)||size,pct=done>=total?100:Math.min(100,doneInLevel/levelTotal*100);return{total,done,size,level,levelTotal,doneInLevel,pct}}
 function render(){renderTotals();renderBooks();renderToday();renderCalendar();renderParent();save();}
 function renderTotals(){const info=levelInfo();document.getElementById('doneCount').textContent=info.done;document.getElementById('leftCount').textContent=info.total-info.done;document.getElementById('levelCount').textContent=info.level+'/10';document.getElementById('totalBar').style.width=info.pct+'%';document.getElementById('levelProgressText').textContent=`${info.doneInLevel}/${info.levelTotal} pagine nel livello ${info.level}`;document.getElementById('levelPercentText').textContent=Math.round(info.pct)+'%';document.getElementById('star1').classList.toggle('empty',info.pct<33.333);document.getElementById('star2').classList.toggle('empty',info.pct<66.666);}
 function renderBooks(){const el=document.getElementById('bookCards');el.innerHTML='';Object.entries(BOOKS).forEach(([id,b])=>{let d=b.pages.filter(p=>isDone(id,p)).length;let div=document.createElement('div');div.className='book';div.innerHTML=`<h3>${b.emoji} ${b.name}</h3><div><b>${d}</b> / ${b.pages.length} pagine</div><div class="mini"><span style="width:${d/b.pages.length*100}%"></span></div><p class="small">Da fare: ${b.pages.length-d}</p>`;el.appendChild(div)})}
 function renderToday(){const p=pagesPerDay(),info=levelInfo();document.getElementById('todayBox').innerHTML=`<div class="stat"><b>${p}</b><br>pagine consigliate per giornata di compiti</div><div class="stat" style="margin-top:10px"><b>${info.doneInLevel}/${info.levelTotal}</b><br>pagine nel livello ${info.level}</div><p class="small">Ogni livello vale circa ${info.size} pagine. La barra mostra solo il livello in corso. Le stelline si accendono a 1/3 e 2/3 del livello.</p>`}
-function renderCalendar(){const wrap=document.getElementById('months');wrap.innerHTML='';[['Giugno',5,30],['Luglio',6,31],['Agosto',7,31]].forEach(([name,month,days])=>{let m=document.createElement('div');m.className='month';m.innerHTML=`<h3>${name}</h3><div class="weekdays">${['L','M','M','G','V','S','D'].map(x=>`<div class="weekday">${x}</div>`).join('')}</div>`;let grid=document.createElement('div');let first=new Date(2025,month,1);let pad=(first.getDay()+6)%7;let week=document.createElement('div');week.className='week';for(let i=0;i<pad;i++){let e=document.createElement('div');e.className='day empty';week.appendChild(e)};for(let day=1;day<=days;day++){if(week.children.length===7){grid.appendChild(week);week=document.createElement('div');week.className='week'}let d=new Date(2025,month,day),k=dateKey(d);let cell=document.createElement('div');cell.className='day '+(state.offDays.includes(k)?'off ':'')+(state.logs[k]?.pages?.length?'doneDay':'');cell.textContent=day;cell.onclick=()=>{if(state.offDays.includes(k))state.offDays=state.offDays.filter(x=>x!==k);else state.offDays.push(k);render()};week.appendChild(cell)};while(week.children.length<7){let e=document.createElement('div');e.className='day empty';week.appendChild(e)}grid.appendChild(week);m.appendChild(grid);wrap.appendChild(m)})}
+function renderCalendar(){const wrap=document.getElementById('months');wrap.innerHTML='';[['Giugno',5,30],['Luglio',6,31],['Agosto',7,31]].forEach(([name,month,days])=>{let m=document.createElement('div');m.className='month';m.innerHTML=`<h3>${name}</h3><div class="weekdays">${['L','M','M','G','V','S','D'].map(x=>`<div class="weekday">${x}</div>`).join('')}</div>`;let grid=document.createElement('div');let first=makeDate(month,1);let pad=(first.getDay()+6)%7;let week=document.createElement('div');week.className='week';for(let i=0;i<pad;i++){let e=document.createElement('div');e.className='day empty';week.appendChild(e)};for(let day=1;day<=days;day++){if(week.children.length===7){grid.appendChild(week);week=document.createElement('div');week.className='week'}let d=makeDate(month,day),k=dateKey(d);let cell=document.createElement('div');cell.className='day '+(state.offDays.includes(k)?'off ':'')+(state.logs[k]?.pages?.length?'doneDay':'');cell.textContent=day;cell.onclick=()=>{if(state.offDays.includes(k))state.offDays=state.offDays.filter(x=>x!==k);else state.offDays.push(k);render()};week.appendChild(cell)};while(week.children.length<7){let e=document.createElement('div');e.className='day empty';week.appendChild(e)}grid.appendChild(week);m.appendChild(grid);wrap.appendChild(m)})}
 function renderParent(){let left=allItems().filter(x=>!isDone(x.book,x.page)).length;let info=levelInfo();let lists=Object.entries(BOOKS).map(([id,b])=>`<p><b>${b.name}</b><br><span class="small">Tutte: ${b.pages.join(', ')}<br>Fatte: ${(state.done[id]||[]).join(', ')||'nessuna'}<br>Da fare: ${b.pages.filter(p=>!isDone(id,p)).join(', ')||'nessuna'}</span></p>`).join('');document.getElementById('parentStats').innerHTML=`<p><b>Pagine totali:</b> ${allItems().length}</p><p><b>Pagine mancanti:</b> ${left}</p><p><b>Livello:</b> ${info.level}/10 (${info.doneInLevel}/${info.levelTotal} pagine nel livello)</p><p><b>Pagine per livello:</b> ${info.size}</p><p><b>Pagine consigliate/giorno:</b> ${pagesPerDay()}</p><p><b>Giorni compiti:</b> ${workDaysLeft().length}</p><h3>Lista pagine</h3>${lists}`;document.getElementById('logs').innerHTML=Object.entries(state.logs).sort().map(([k,v])=>`<div class="logrow"><b>${k}</b><span>${v.count||0} pagine</span><span>${(v.pages||[]).join(', ')}</span><button onclick="delete state.logs['${k}'];render()">Rimuovi</button></div>`).join('')||'<p class="small">Nessuno storico.</p>';let s=document.getElementById('adminBook');if(!s.innerHTML)s.innerHTML=Object.entries(BOOKS).map(([id,b])=>`<option value="${id}">${b.name}</option>`).join('')}
 function renderPages(){let el=document.getElementById('allPages');el.innerHTML='';Object.entries(BOOKS).forEach(([id,b])=>{let sec=document.createElement('div');sec.innerHTML=`<h3>${b.emoji} ${b.name}</h3>`;let list=document.createElement('div');list.className='page-list';b.pages.forEach(p=>{let d=document.createElement('button');d.className='page '+(isDone(id,p)?(b.special.includes(p)?'appdone':'done'):'')+(b.special.includes(p)?' special':'');d.textContent=p+(b.special.includes(p)?' 👪':'');d.onclick=()=>{d.classList.toggle('selected')};d.dataset.book=id;d.dataset.page=p;list.appendChild(d)});sec.appendChild(list);el.appendChild(sec)})}
 function parsePages(txt){let out=[];txt.split(',').map(x=>x.trim()).filter(Boolean).forEach(part=>{if(part.includes('-')){let [a,b]=part.split('-').map(Number);for(let i=a;i<=b;i++)out.push(i)}else out.push(Number(part))});return [...new Set(out.filter(Number.isFinite))]}
