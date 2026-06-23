@@ -5,8 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Compiti delle Vacanze</title>
 <style>
-:root{--bg:#fff8df;--card:#fff;--ink:#243046;--muted:#64748b;--brand:#ff8a00;--green:#21a67a;--red:#ef4444;--blue:#60a5fa;--purple:#8b5cf6;--yellow:#ffd166;--shadow:0 12px 30px rgba(40,40,80,.15);--radius:24px}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:radial-gradient(circle at 20% 0,#fff3b0,transparent 35%),linear-gradient(135deg,#fff8df,#e7f7ff);color:var(--ink)}button,input,select{font:inherit}button{border:0;border-radius:18px;padding:12px 16px;background:#fff;box-shadow:0 4px 0 rgba(0,0,0,.08);cursor:pointer;font-weight:800}button:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.08)}.app{max-width:1180px;margin:auto;padding:18px}.top{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}.title{display:flex;gap:12px;align-items:center}.mascot{font-size:48px;filter:drop-shadow(0 6px 0 rgba(0,0,0,.08))}.h1{font-size:clamp(28px,5vw,54px);font-weight:1000;letter-spacing:-1px}.tabs{display:flex;gap:8px;flex-wrap:wrap}.tab{background:#fff}.tab.active{background:var(--ink);color:white}.grid{display:grid;grid-template-columns:1.25fr .75fr;gap:18px;margin-top:18px}.card{background:rgba(255,255,255,.86);border:3px solid rgba(255,255,255,.95);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}.hero{background:linear-gradient(135deg,#fff,#fff2bf)}.level-wrap{position:relative;padding-top:32px}.bigprogress{height:38px;background:#e5e7eb;border-radius:999px;overflow:hidden;border:4px solid #fff;position:relative}.bigprogress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#34d399,#facc15,#fb7185);border-radius:999px;transition:.4s}.milestone{position:absolute;top:0;transform:translateX(-50%);font-size:29px;line-height:1;filter:drop-shadow(0 3px 0 rgba(0,0,0,.10));z-index:2}.milestone.one{left:33.333%}.milestone.two{left:66.666%}.milestone.empty{filter:grayscale(1);opacity:.42}.level-meta{display:flex;justify-content:space-between;gap:10px;margin-top:8px;font-weight:900;color:#475569}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}.stat{padding:14px;background:#fff;border-radius:20px;text-align:center}.stat b{font-size:30px}.books{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.book{padding:14px;border-radius:22px;background:#fff;box-shadow:0 5px 16px rgba(0,0,0,.08)}.book h3{margin:0 0 8px}.mini{height:16px;background:#e5e7eb;border-radius:999px;overflow:hidden}.mini span{display:block;height:100%;background:var(--green);width:0}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.primary{background:var(--brand);color:#fff}.success{background:var(--green);color:#fff}.danger{background:var(--red);color:#fff}.purple{background:var(--purple);color:#fff}.blue{background:var(--blue);color:#fff}.page-list{display:flex;gap:8px;flex-wrap:wrap;max-height:360px;overflow:auto;padding:6px}.page{min-width:50px;text-align:center;padding:10px;border-radius:16px;background:#f1f5f9;border:3px solid transparent;font-weight:900}.page.done{background:#bbf7d0;text-decoration:line-through;color:#166534}.page.special{border-color:#8b5cf6;background:#ede9fe}.page.selected{outline:5px solid #facc15}.page.appdone{background:linear-gradient(135deg,#bbf7d0,#ede9fe)}.suggestions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}.suggestion{background:#fff;border:4px dashed #facc15;border-radius:20px;padding:12px;font-size:20px;font-weight:1000}.modal{position:fixed;inset:0;background:rgba(15,23,42,.45);display:none;align-items:center;justify-content:center;padding:18px;z-index:5}.modal.show{display:flex}.modal-card{max-width:900px;width:100%;max-height:92vh;overflow:auto;background:#fff;border-radius:30px;padding:20px;box-shadow:var(--shadow)}.close{float:right}.months{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.month{background:#fff;border-radius:22px;padding:12px}.month h3{text-align:center;margin:4px 0 8px}.weekdays,.week{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}.weekday{text-align:center;color:var(--muted);font-weight:800}.day{aspect-ratio:1;border-radius:12px;background:#fff7cc;display:flex;align-items:center;justify-content:center;font-weight:900;position:relative;border:2px solid #fff}.day.off{background:#bfdbfe;color:#1e3a8a}.day.doneDay:after{content:'✓';position:absolute;right:3px;bottom:1px;font-size:14px;color:#166534}.day.empty{background:transparent;border:0}.logrow{display:grid;grid-template-columns:1fr 90px 1fr auto;gap:8px;align-items:center;margin:8px 0}.parent-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.small{font-size:13px;color:var(--muted)}textarea{width:100%;height:150px;border-radius:16px;border:2px solid #cbd5e1;padding:10px}.field{display:flex;flex-direction:column;gap:5px;margin:8px 0}input,select{border:2px solid #cbd5e1;border-radius:14px;padding:10px}.confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:10}.confetti i{position:absolute;top:-20px;font-style:normal;animation:fall 1.8s linear forwards}@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}.toast{position:fixed;left:50%;top:18px;transform:translateX(-50%);background:#fff;border:4px solid #facc15;border-radius:26px;padding:18px 24px;box-shadow:var(--shadow);z-index:20;font-weight:1000;font-size:22px;display:none;text-align:center}.toast.show{display:block}@media(max-width:850px){.grid,.books,.months,.parent-grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.logrow{grid-template-columns:1fr}.h1{font-size:34px}.milestone{font-size:25px}}
+:root{--bg:#fff8df;--card:#fff;--ink:#243046;--muted:#64748b;--brand:#ff8a00;--green:#21a67a;--red:#ef4444;--blue:#60a5fa;--purple:#8b5cf6;--yellow:#ffd166;--shadow:0 12px 30px rgba(40,40,80,.15);--radius:24px}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:radial-gradient(circle at 20% 0,#fff3b0,transparent 35%),linear-gradient(135deg,#fff8df,#e7f7ff);color:var(--ink)}button,input,select{font:inherit}button{border:0;border-radius:18px;padding:12px 16px;background:#fff;box-shadow:0 4px 0 rgba(0,0,0,.08);cursor:pointer;font-weight:800}button:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.08)}.app{max-width:1180px;margin:auto;padding:18px}.top{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}.title{display:flex;gap:12px;align-items:center}.mascot{font-size:48px;filter:drop-shadow(0 6px 0 rgba(0,0,0,.08))}.h1{font-size:clamp(28px,5vw,54px);font-weight:1000;letter-spacing:-1px}.tabs{display:flex;gap:8px;flex-wrap:wrap}.tab{background:#fff}.tab.active{background:var(--ink);color:white}.grid{display:grid;grid-template-columns:1.25fr .75fr;gap:18px;margin-top:18px}.card{background:rgba(255,255,255,.86);border:3px solid rgba(255,255,255,.95);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}.hero{background:linear-gradient(135deg,#fff,#fff2bf)}.level-wrap{position:relative;padding-top:32px}.bigprogress{height:38px;background:#e5e7eb;border-radius:999px;overflow:hidden;border:4px solid #fff;position:relative}.bigprogress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#34d399,#facc15,#fb7185);border-radius:999px;transition:.4s}.milestone{position:absolute;top:0;transform:translateX(-50%);font-size:29px;line-height:1;filter:drop-shadow(0 3px 0 rgba(0,0,0,.10));z-index:2}.milestone.one{left:33.333%}.milestone.two{left:66.666%}.milestone.empty{filter:grayscale(1);opacity:.42}.level-meta{display:flex;justify-content:space-between;gap:10px;margin-top:8px;font-weight:900;color:#475569}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}.stat{padding:14px;background:#fff;border-radius:20px;text-align:center}.stat b{font-size:30px}.books{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.book{padding:14px;border-radius:22px;background:#fff;box-shadow:0 5px 16px rgba(0,0,0,.08)}.book h3{margin:0 0 8px}.mini{height:16px;background:#e5e7eb;border-radius:999px;overflow:hidden}.mini span{display:block;height:100%;background:var(--green);width:0}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.primary{background:var(--brand);color:#fff}.success{background:var(--green);color:#fff}.danger{background:var(--red);color:#fff}.purple{background:var(--purple);color:#fff}.blue{background:var(--blue);color:#fff}.page-list{display:flex;gap:8px;flex-wrap:wrap;max-height:360px;overflow:auto;padding:6px}.page{min-width:50px;text-align:center;padding:10px;border-radius:16px;background:#f1f5f9;border:3px solid transparent;font-weight:900}.page.done{background:#bbf7d0;text-decoration:line-through;color:#166534}.page.special{border-color:#8b5cf6;background:#ede9fe}.page.selected{outline:5px solid #facc15}.page.appdone{background:linear-gradient(135deg,#bbf7d0,#ede9fe);text-decoration:line-through;color:#166534;}.suggestions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}.suggestion{background:#fff;border:4px dashed #facc15;border-radius:20px;padding:12px;font-size:20px;font-weight:1000}.suggestion.doneSuggestion{background:#bbf7d0;border-style:solid;border-color:#21a67a;color:#166534;text-decoration:line-through;opacity:.9}.modal{position:fixed;inset:0;background:rgba(15,23,42,.45);display:none;align-items:center;justify-content:center;padding:18px;z-index:5}.modal.show{display:flex}.modal-card{max-width:900px;width:100%;max-height:92vh;overflow:auto;background:#fff;border-radius:30px;padding:20px;box-shadow:var(--shadow)}.close{float:right}.months{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.month{background:#fff;border-radius:22px;padding:12px}.month h3{text-align:center;margin:4px 0 8px}.weekdays,.week{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}.weekday{text-align:center;color:var(--muted);font-weight:800}.day{aspect-ratio:1;border-radius:12px;background:#fff7cc;display:flex;align-items:center;justify-content:center;font-weight:900;position:relative;border:2px solid #fff}.day.off{background:#bfdbfe;color:#1e3a8a}.day.doneDay:after{content:'✓';position:absolute;right:3px;bottom:1px;font-size:14px;color:#166534}.day.empty{background:transparent;border:0}.logrow{display:grid;grid-template-columns:1fr 90px 1fr auto;gap:8px;align-items:center;margin:8px 0}.parent-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.small{font-size:13px;color:var(--muted)}textarea{width:100%;height:150px;border-radius:16px;border:2px solid #cbd5e1;padding:10px}.field{display:flex;flex-direction:column;gap:5px;margin:8px 0}input,select{border:2px solid #cbd5e1;border-radius:14px;padding:10px}.confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:10}.confetti i{position:absolute;top:-20px;font-style:normal;animation:fall 1.8s linear forwards}@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}.toast{position:fixed;left:50%;top:18px;transform:translateX(-50%);background:#fff;border:4px solid #facc15;border-radius:26px;padding:18px 24px;box-shadow:var(--shadow);z-index:20;font-weight:1000;font-size:22px;display:none;text-align:center}.toast.show{display:block}@media(max-width:850px){.grid,.books,.months,.parent-grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.logrow{grid-template-columns:1fr}.h1{font-size:34px}.milestone{font-size:25px}}
 </style>
+
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Compiti Vacanze">
+<meta name="theme-color" content="#ff8a00">
+
 </head>
 <body>
 <div class="app">
@@ -62,19 +70,24 @@
 <div class="confetti" id="confetti"></div><div class="toast" id="toast"></div>
 <script>
 const BOOKS={
-  letture:{name:'Letture',emoji:'📖',special:[86,93,97,98],pages:[24,26,28,29,32,33,38,43,44,46,47,49,56,57,61,62,63,64,65,66,67,68,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,93,95,96,97,98,99,102,103,104,105,106,107,108,109]},
+  letture:{name:'Letture',emoji:'📖',special:[86,93,97,98],pages:[24,26,28,29,32,33,38,43,44,46,47,49,54,55,56,57,61,62,63,64,65,66,67,68,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,93,95,96,97,98,99,102,103,104,105,106,107,108,109]},
   matematica:{name:'Matematica',emoji:'🔢',special:[],pages:[127,128,130,131,133,137,138,139,140,141,142,143,144,149,154,155,159,160,161,162,163,168,170,171,174,175,186,187,189]},
   vacanze:{name:'Libro vacanze',emoji:'🏖️',special:[],pages:[4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91]}
 };
-const DEFAULT_DONE={'vacanze':[50,51,76,84,85]};
-const KEY='compitiVacanzeStandaloneV3';
+const DEFAULT_DONE={};
+const KEY='compitiVacanzeStandaloneV4';
 let state=load();
 function load(){const s=localStorage.getItem(KEY);if(s)return JSON.parse(s);return {done:structuredClone(DEFAULT_DONE),logs:{},offDays:defaultOffDays()}}
 function save(){localStorage.setItem(KEY,JSON.stringify(state));}
 function allItems(){return Object.entries(BOOKS).flatMap(([id,b])=>b.pages.map(p=>({book:id,page:p,special:b.special.includes(p)})));}
 function isDone(id,p){return (state.done[id]||[]).includes(p)}
 function setDone(id,p,val){state.done[id]=state.done[id]||[];if(val&&!isDone(id,p))state.done[id].push(p);if(!val)state.done[id]=state.done[id].filter(x=>x!==p);state.done[id].sort((a,b)=>a-b)}
-function dateKey(d){return d.toISOString().slice(0,10)}
+function dateKey(d){
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
+}
 function appYear(){return new Date().getFullYear();}
 function todayDateOnly(){const t = new Date();return new Date(t.getFullYear(), t.getMonth(), t.getDate());}
 function makeDate(monthIndex, day){return new Date(appYear(), monthIndex, day);}
@@ -92,14 +105,25 @@ function defaultOffDays(){
     }
   }
 
-  add(5, 8, 14);    // giugno
-  add(5, 28, 29);   // giugno
-  add(6, 5, 6);     // luglio
-  add(6, 12, 13);   // luglio
-  add(7, 4, 5);     // agosto
-  add(7, 10, 10);   // agosto
-  add(7, 17, 17);   // agosto
-  add(7, 25, 31);   // agosto
+  add(5, 1, 14);    // giugno
+  add(5, 20, 21);   // giugno
+  add(5, 27, 30);   // giugno
+  add(6, 1, 12);    // luglio
+  add(6, 18, 19);   // luglio
+  add(6, 25, 26);   // luglio
+  add(7, 1, 2);     // agosto
+  add(7, 4, 4);     // agosto  
+  add(7, 6, 6);     // agosto
+  add(7, 8, 9);     // agosto
+  add(7, 11, 11);   // agosto
+  add(7, 13, 13);   // agosto
+  add(7, 15, 16);   // agosto
+  add(7, 18, 18);   // agosto
+  add(7, 20, 20);   // agosto
+  add(7, 22, 23);   // agosto
+  add(7, 25, 25);   // agosto
+  add(7, 27, 27);   // agosto
+  add(7, 29, 31);   // agosto
 
   return a;
 }
@@ -110,7 +134,7 @@ function workDaysLeft(){
   const calendarStart = new Date(y, 5, 1); // 1 giugno
   const calendarEnd = new Date(y, 7, 31);  // 31 agosto
 
-  let now = today < calendarStart ? calendarStart : today;
+  let now = today < calendarStart ? calendarStart: today;
   let days = [];
 
   while(now <= calendarEnd){
@@ -125,7 +149,11 @@ function workDaysLeft(){
 
   return days;
 }
-function pagesPerDay(){const left=allItems().filter(x=>!isDone(x.book,x.page)).length;const days=workDaysLeft().filter(k=>!state.logs[k]?.pages?.length).length||1;return Math.max(1,Math.ceil(left/days));}
+function pagesPerDay(){
+  const left = allItems().filter(x => !isDone(x.book,x.page)).length;
+  const days = workDaysLeft().length || 1;
+  return Math.max(1, Math.ceil(left / days));
+}
 function levelInfo(){const total=allItems().length,done=allItems().filter(x=>isDone(x.book,x.page)).length,size=Math.max(1,Math.ceil(total/10));let level=Math.min(10,Math.floor(done/size)+1);if(done>=total)level=10;const start=(level-1)*size,doneInLevel=done>=total?Math.min(size,total-start):Math.max(0,done-start),levelTotal=Math.min(size,total-start)||size,pct=done>=total?100:Math.min(100,doneInLevel/levelTotal*100);return{total,done,size,level,levelTotal,doneInLevel,pct}}
 function render(){renderTotals();renderBooks();renderToday();renderCalendar();renderParent();save();}
 function renderTotals(){const info=levelInfo();document.getElementById('doneCount').textContent=info.done;document.getElementById('leftCount').textContent=info.total-info.done;document.getElementById('levelCount').textContent=info.level+'/10';document.getElementById('totalBar').style.width=info.pct+'%';document.getElementById('levelProgressText').textContent=`${info.doneInLevel}/${info.levelTotal} pagine nel livello ${info.level}`;document.getElementById('levelPercentText').textContent=Math.round(info.pct)+'%';document.getElementById('star1').classList.toggle('empty',info.pct<33.333);document.getElementById('star2').classList.toggle('empty',info.pct<66.666);}
@@ -139,10 +167,45 @@ function celebrate(){const c=document.getElementById('confetti');for(let i=0;i<7
 function toast(msg){let t=document.getElementById('toast');t.innerHTML=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500)}
 function maybeLevelUp(before){let after=levelInfo();if(after.level>before.level){celebrate();toast(`🎉 Livello ${before.level} completato!<br>🚀 Benvenuto al livello ${after.level}!`)}else if(after.pct>=66.666 && before.pct<66.666){celebrate();toast('⭐ Seconda stellina conquistata!')}else if(after.pct>=33.333 && before.pct<33.333){celebrate();toast('⭐ Prima stellina conquistata!')}}
 document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('.screen').forEach(s=>s.style.display='none');document.getElementById(b.dataset.tab).style.display='block';render()});
-document.getElementById('openPages').onclick=document.getElementById('doManual').onclick=()=>{renderPages();document.getElementById('pagesModal').classList.add('show')};
+document.getElementById('openPages').onclick=()=>{renderPages();document.getElementById('pagesModal').classList.add('show')};
+document.getElementById('doManual').onclick=()=>{document.getElementById('suggestions').innerHTML=''};
 document.getElementById('closePages').onclick=()=>document.getElementById('pagesModal').classList.remove('show');
 document.getElementById('savePages').onclick=()=>{let before=levelInfo();let today=dateKey(new Date());let changed=[];document.querySelectorAll('#allPages .page.selected').forEach(btn=>{let id=btn.dataset.book,p=Number(btn.dataset.page),was=isDone(id,p);setDone(id,p,!was);changed.push(`${was?'Rimessa da fare':'Fatta'}: ${BOOKS[id].name} ${p}`)});if(changed.length){state.logs[today]=state.logs[today]||{pages:[],count:0};state.logs[today].pages=[...new Set([...(state.logs[today].pages||[]),...changed])];state.logs[today].count=(state.logs[today].pages||[]).length}document.getElementById('pagesModal').classList.remove('show');render();maybeLevelUp(before)};
-document.getElementById('doSuggest').onclick=()=>{let left=allItems().filter(x=>!isDone(x.book,x.page));let n=Math.min(pagesPerDay(),left.length);let pick=[];while(pick.length<n&&left.length){let i=Math.floor(Math.random()*left.length);pick.push(left.splice(i,1)[0])}document.getElementById('suggestions').innerHTML=pick.map(x=>`<button class="suggestion" onclick="let before=levelInfo();setDone('${x.book}',${x.page},true);let today=dateKey(new Date());state.logs[today]=state.logs[today]||{pages:[],count:0};state.logs[today].pages=[...new Set([...(state.logs[today].pages||[]),'Fatta: ${BOOKS[x.book].name} ${x.page}'])];state.logs[today].count=state.logs[today].pages.length;render();maybeLevelUp(before)">${BOOKS[x.book].emoji} ${BOOKS[x.book].name} pag. ${x.page}${x.special?' 👪':''}</button>`).join('')};
+document.getElementById('doSuggest').onclick=()=>{
+  let left=allItems().filter(x=>!isDone(x.book,x.page));
+  let n=Math.min(pagesPerDay(),left.length);
+  let pick=[];
+  while(pick.length<n&&left.length){
+    let i=Math.floor(Math.random()*left.length);
+    pick.push(left.splice(i,1)[0]);
+  }
+  document.getElementById('suggestions').innerHTML=pick.map(x=>`<button class="suggestion" data-book="${x.book}" data-page="${x.page}" onclick="toggleSuggestedPage(this)">${BOOKS[x.book].emoji} ${BOOKS[x.book].name} pag. ${x.page}${x.special?' 👪':''}</button>`).join('')
+};
+function toggleSuggestedPage(btn){
+  let before=levelInfo();
+  let id=btn.dataset.book;
+  let p=Number(btn.dataset.page);
+  let was=isDone(id,p);
+  setDone(id,p,!was);
+  let today=dateKey(new Date());
+  state.logs[today]=state.logs[today]||{pages:[],count:0};
+  state.logs[today].pages=[...new Set([...(state.logs[today].pages||[]),`${was?'Rimessa da fare':'Fatta'}: ${BOOKS[id].name} ${p}`])];
+  state.logs[today].count=state.logs[today].pages.length;
+  if(was){
+    btn.classList.remove('doneSuggestion');
+    btn.innerHTML=`${BOOKS[id].emoji} ${BOOKS[id].name} pag. ${p}${BOOKS[id].special.includes(p)?' 👪':''}`;
+  }else{
+    btn.classList.add('doneSuggestion');
+    btn.innerHTML=`✅ ${BOOKS[id].emoji} ${BOOKS[id].name} pag. ${p}${BOOKS[id].special.includes(p)?' 👪':''}`;
+  }
+  renderTotals();
+  renderBooks();
+  renderToday();
+  renderCalendar();
+  renderParent();
+  save();
+  maybeLevelUp(before);
+}
 document.getElementById('addPages').onclick=()=>{let id=document.getElementById('adminBook').value;BOOKS[id].pages=[...new Set([...BOOKS[id].pages,...parsePages(document.getElementById('adminPages').value)])].sort((a,b)=>a-b);render()};
 document.getElementById('removePages').onclick=()=>{let id=document.getElementById('adminBook').value,rm=parsePages(document.getElementById('adminPages').value);BOOKS[id].pages=BOOKS[id].pages.filter(p=>!rm.includes(p));state.done[id]=(state.done[id]||[]).filter(p=>!rm.includes(p));render()};
 document.getElementById('exportData').onclick=()=>document.getElementById('backup').value=JSON.stringify({version:3,exportedAt:new Date().toISOString(),state,books:BOOKS,pageLists:Object.fromEntries(Object.entries(BOOKS).map(([id,b])=>[id,{name:b.name,pages:b.pages,done:state.done[id]||[],todo:b.pages.filter(p=>!isDone(id,p)),special:b.special}]))},null,2);
